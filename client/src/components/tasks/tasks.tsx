@@ -43,7 +43,7 @@ export default class Tasks extends Component<any,tasksState>{
     // get all tasks
     public async componentDidMount() {
        try {
-           let response = await axios.get<Task[]>("http://localhost:3001/tasks/");
+           let response = await axios.get<Task[]>("/tasks/");
            this.setState({tasks: response.data}) /* display the all tasks */
            
         } catch (error) {
@@ -65,7 +65,7 @@ export default class Tasks extends Component<any,tasksState>{
         console.log(newTaskDetails)
         try {
             // send task to server, at server answer we will get the new tsak id from the DB
-            let response = await axios.post<{id:number,date:string}>("http://localhost:3001/tasks",newTaskDetails);
+            let response = await axios.post<{id:number,date:string}>("/tasks",newTaskDetails);
             console.log(response.data)
     
             let newTaskIdAndDate = response.data;
@@ -95,7 +95,7 @@ export default class Tasks extends Component<any,tasksState>{
         let editTaskDetails = new Task(this.state.taskName, this.state.phone ,this.state.email, this.state.userName, this.state.taskDescription ,this.state.pickedTask.id, this.state.pickedTask.date)
         try {
             // send updated task to server
-            let response = await axios.put<string>("http://localhost:3001/tasks",editTaskDetails);
+            let response = await axios.put<string>("/tasks",editTaskDetails);
             let serverResponse = response.data;
             console.log(serverResponse)
             let currentTasks = this.state.tasks;
@@ -184,7 +184,7 @@ export default class Tasks extends Component<any,tasksState>{
     deleteTask = async (id:number) => { /* modal display switch hide/show */
         try {
             // send task id to server
-            let response = await axios.delete<string>("http://localhost:3001/tasks/"+id);
+            let response = await axios.delete<string>("/tasks/"+id);
             let serverResponse = response.data;
             console.log(serverResponse)
             let currentTasks = this.state.tasks;
