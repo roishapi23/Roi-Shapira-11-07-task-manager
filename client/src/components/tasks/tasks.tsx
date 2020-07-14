@@ -26,7 +26,6 @@ export default class Tasks extends Component<any,tasksState>{
        super(props)
         this.state = {
         filter:"",
-        // searchInput:"",
         tasks:[],
         taskName:"",
         phone: "",
