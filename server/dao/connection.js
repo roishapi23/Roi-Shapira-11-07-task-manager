@@ -16,6 +16,8 @@ connection.connect(err => {
 });
 
 
+
+
 // One function for executing select / insert / update / delete: 
 function execute(sql) {
     return new Promise((resolve, reject) => {
